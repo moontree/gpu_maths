@@ -1,0 +1,8 @@
+file(GLOB app_srcs ${PROJECT_SOURCE_DIR}}/apps/ "*.cpp")
+message(${app_srcs})
+foreach(app_src ${app_srcs})
+    message(build : ${app_src})
+    get_filename_component(name ${app_src} NAME_WE)
+    add_executable(${name} ${app_src})
+    target_link_libraries(${name} ${GLOG_LIBRARY} ${LINKER_LIBS} gpu)
+endforeach()
